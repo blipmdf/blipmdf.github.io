@@ -1,1 +1,27 @@
-Hello World
+
+<html>
+  <head></head>
+  <body>
+    <button type="button" onclick="load()"> Send Request </button>
+
+    <p id="reply"></p>
+
+<script>
+function load() {
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+	  if (this.readyState == 4 && this.status == 200) {
+	    document.getElementById("reply").innerHTML = this.responseText;
+	  }
+	};
+	var data = "{}";
+
+	xhttp.open("GET", "https://example", true);
+	xhttp.setRequestHeader("Content-type", "text/plain");
+	//xhttp.send(data);
+  xhttp.send();
+}
+    </script>
+
+  </body>
+</html>
